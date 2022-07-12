@@ -1,9 +1,18 @@
-import './App.css';
+import Banner from './Banner';
+import Menu from './Menu';
+import { useState } from 'react'
 
 function App() {
+  const [showMenu, setshowMenu] = useState(false);
+
+  function toggleMenu() {
+    setshowMenu(!showMenu)
+  }
+
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      { showMenu && <Menu toggleMenu={toggleMenu}/> }
+      <Banner toggleMenu={toggleMenu}/>
     </div>
   );
 }
