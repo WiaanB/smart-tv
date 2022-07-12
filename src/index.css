@@ -1,0 +1,67 @@
+/* CSS Reset and Font */
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Banner Bar */
+.top-banner {
+  width: 100vw;
+  height: 10vh;
+  background: #CB356B;
+  background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
+  background: linear-gradient(to right, #BD3F32, #CB356B);
+  display:grid;
+  grid-template-columns: 10% 90%;
+  align-items: center;
+  justify-items: center;
+}
+
+.title {
+  font-size: 64px;
+  margin-left: -2em;
+  color: white;
+  display: flex;
+  user-select: none;
+}
+
+/* Menu */
+.sliding-menu {
+  position: absolute;
+  left: 0;
+  height: 100vh;
+  width: 20vw;
+  background-color: white;
+  box-shadow: 5px 15px 20px rgba(0, 0, 0,0.5);
+}
+
+.hideMenu {
+  display: none;
+}
+
+/* Toggle Button */
+.fa-bars {
+  padding-left: 100px;
+  color: white;
+  font-size: 32px;
+  user-select: none;
+}
+
+.fa-close {
+  float: right;
+  padding: 20px;
+  color: black;
+  font-size: 32px;
+  user-select: none;
+}
+
+.fa-bars:hover {
+  color: rgb(219, 219, 219);
+  cursor: pointer;
+}
+
+.fa-close:hover {
+  color: rgba(0, 0, 0,0.5);
+  cursor: pointer;
+}
