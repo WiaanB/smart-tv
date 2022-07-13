@@ -1,6 +1,6 @@
 import Banner from './Banner';
 import Menu from './Menu';
-import { useState } from 'react'
+import { useState } from 'react';
 
 function App() {
   const [showMenu, setshowMenu] = useState(false);
