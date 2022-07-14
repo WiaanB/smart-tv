@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
-function Menu({ toggleMenu }) {
+function Menu({ toggleMenu, changeTopic }) {
 
     const [topics,setTopics] = useState([]);
 
@@ -12,7 +12,7 @@ function Menu({ toggleMenu }) {
                 "Authorization": `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`
             }
         }).then(response => {
-            setTopics((response.data || []).map(e => e.title))
+            setTopics((response.data || []).map(e => { return {title: e.title, id: e.id, description: e.description} }))
         });
     },[])
 
@@ -25,7 +25,7 @@ function Menu({ toggleMenu }) {
                 {topics.length &&
                 <ul>
                     {topics.map(e => {
-                        return <li className="menu-item">{e}</li>
+                        return <li key={e.id} className="menu-item" onClick={() => {changeTopic(e)}} title={e.description}>{e.title}</li>
                     })}
                 </ul>
                 }
