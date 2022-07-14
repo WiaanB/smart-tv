@@ -20,7 +20,7 @@
 
 .title {
   font-size: 64px;
-  margin-left: -2em;
+  margin-left: -4em;
   color: white;
   display: flex;
   user-select: none;
@@ -76,4 +76,54 @@
 .fa-close:hover {
   color: rgba(0, 0, 0,0.5);
   cursor: pointer;
+}
+
+/* Display Area */
+
+.display-area {
+  width:100vw;
+  height:90vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  overflow: hidden;
+}
+
+.loading {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  height: 45vh;
+  width: 20vw;
+  user-select: none;
+}
+
+img {
+  height:100%;
+  width:100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.pointer {
+  height:50px;
+  width:50px;
+  background-color: aqua;
+  position: absolute;
+  top: 50%;
+}
+
+.left {
+  left:0;
+}
+
+.right {
+  right:0;
+}
+
+.hide {
+  display: none;
 }
