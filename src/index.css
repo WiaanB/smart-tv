@@ -111,9 +111,12 @@ img {
 .pointer {
   height:50px;
   width:50px;
-  background-color: aqua;
   position: absolute;
   top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:42px;
 }
 
 .left {
@@ -126,4 +129,13 @@ img {
 
 .hide {
   display: none;
+}
+
+.fa-chevron-right, .fa-chevron-left {
+  color: rgba(255,255,255,0.8)
+}
+
+.fa-chevron-right:hover, .fa-chevron-left:hover {
+  color: rgba(0,0,0,0.8);
+  cursor: pointer;
 }
