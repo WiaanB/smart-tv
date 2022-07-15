@@ -55,7 +55,7 @@ function Display({ topic, showNav }) {
             }):<PropagateLoader loading={loading}/>
             }
             <div className={`pointer left ${showNav ? 'hide':''}`} onClick={() => { if(page > 0) setPage(page-1) }}></div>
-            <div className={`pointer right ${showNav ? 'hide':''}`} onClick={() => {setPage(page+1) }}></div>
+            <div className={`pointer right ${showNav ? 'hide':''}`}><i className="fa fa-chevron-right" onClick={() => {setPage(page+1) }}></i></div>
         </div>
     );
 }
