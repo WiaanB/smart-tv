@@ -22,7 +22,7 @@ function Menu({ toggleMenu, changeTopic }) {
                 <i onClick={toggleMenu} className="fa fa-close"></i>
             </div>
             <div className="menu-list">
-                {topics.length &&
+                {topics.length > 0 &&
                 <ul>
                     {topics.map(e => {
                         return <li key={e.id} className="menu-item" onClick={() => {changeTopic(e)}} title={e.description}>{e.title}</li>
