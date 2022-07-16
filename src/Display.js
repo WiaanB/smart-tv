@@ -53,6 +53,7 @@ function Display({ topic, showNav }) {
             }).then(async (response) => {
                 // Adjust the page the page 3, as I initially fetch 2
                 await cacheImages(response.data || []);
+                // Concat the new page to the existing array
                 setImages(images.concat((response.data || []).map(i => {
                     return {
                         id: i.id,
