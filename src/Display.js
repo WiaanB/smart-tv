@@ -6,7 +6,8 @@ function Display({ topic, showNav }) {
     const [loading,setLoading] = useState(true);
     const [page,setPage] = useState(1);
     const [images,setImages] = useState([]);
-    const [columns,setColumns] = useState[0,9];
+    const [counter,setCounter] = useState(10);
+    const [columns,setColumns] = useState([0,9])
 
     // Fetch Initial Images
     useEffect(() => {
@@ -27,13 +28,43 @@ function Display({ topic, showNav }) {
                     links: i.links
                 };
             }));
+            setPage(page+2);
             setLoading(false);
         }).catch(() => {
             console.warn('Failed to fetch resource!');
             setLoading(false);
-        })
-    },[topic])
+        });
+    },[topic]);
 
+    // Fetch Images Based on Page
+    useEffect(() => {
+        // Prevent the function from fetching additional pages on first load
+        if (images.length == 0 ) return
+        // If there are 2 rows preloaded, fetch more and add them to the array
+        if (counter == images.length - 6) {
+            axios(`https://api.unsplash.com/topics/${topic.id}/photos?page=${page}&per_page=10`,{
+                method: "get",
+                headers:{
+                    "Authorization": `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`
+                }
+            }).then(async (response) => {
+                await cacheImages(response.data || []);
+                setImages(images.concat((response.data || []).map(i => {
+                    return {
+                        id: i.id,
+                        description: i.description,
+                        urls: i.urls,
+                        links: i.links
+                    };
+                })));
+                setPage(page+1);
+            }).catch(() => {
+                console.warn('Failed to fetch resource!');
+            });
+        }
+    },[counter])
+
+    // This will preload all the images into cache
     async function cacheImages(array) {
         return new Promise(async (resolve) => {
 
@@ -51,16 +82,32 @@ function Display({ topic, showNav }) {
         });
     }
 
+    function moveColumns(direction) {
+        if (direction == 'right') {
+            setCounter(counter+2)
+            setColumns([columns[0] + 2, columns[1] + 2])
+        } else {
+            setCounter(counter-2)
+            setColumns([columns[0] - 2, columns[1] - 2])
+        }
+    }
+
     return(
         <div className={`display-area ${loading ? 'loading':''}`}>
-            {!loading ? images.map(i => {
-                return <div key={i.id} className="image-container">
-                    <img src={i.urls.regular} alt={i.description}/>
-                </div>
+            {!loading ? images.map((i,idx) => {
+                if (idx >= columns[0] && idx <= columns[1]) {
+                    return <div key={i.id} className="image-container">
+                        <img src={i.urls.regular} alt={i.description}/>
+                    </div>
+                }
             }):<PropagateLoader loading={loading}/>
             }
-            <div className={`pointer left ${(showNav || page == 1) ? 'hide':''}`}><i className="fa fa-chevron-left" onClick={() => { setPage(page-1) }}></i></div>
-            <div className={`pointer right ${showNav ? 'hide':''}`}><i className="fa fa-chevron-right" onClick={() => {setPage(page+1) }}></i></div>
+            <div className={`pointer left ${(showNav || counter == 10) ? 'hide':''}`}>
+                <i className="fa fa-chevron-left" onClick={() => { moveColumns("left") }}></i>
+            </div>
+            <div className={`pointer right ${showNav ? 'hide':''}`}>
+                <i className="fa fa-chevron-right" onClick={() => { moveColumns("right") }}></i>
+            </div>
         </div>
     );
 }
