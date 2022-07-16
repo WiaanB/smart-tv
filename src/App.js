@@ -5,7 +5,7 @@ import Display from './Display';
 
 function App() {
   const [showMenu, setshowMenu] = useState(false);
-  const [topic, setTopic] = useState({id:"bo8jQKTaE0Y"});
+  const [topic, setTopic] = useState({ id: "bo8jQKTaE0Y" });
 
   function toggleMenu() {
     setshowMenu(!showMenu)
@@ -18,9 +18,9 @@ function App() {
 
   return (
     <div className="App">
-      { showMenu && <Menu toggleMenu={toggleMenu} changeTopic={topicSelected}/> }
-      <Banner toggleMenu={toggleMenu}/>
-      <Display topic={topic} showNav={showMenu}/>
+      {showMenu && <Menu toggleMenu={toggleMenu} changeTopic={topicSelected} />}
+      <Banner toggleMenu={toggleMenu} />
+      <Display topic={topic} showNav={showMenu} />
     </div>
   );
 }

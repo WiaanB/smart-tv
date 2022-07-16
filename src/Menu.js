@@ -4,18 +4,20 @@ import axios from 'axios';
 
 function Menu({ toggleMenu, changeTopic }) {
 
-    const [topics,setTopics] = useState([]);
+    const [topics, setTopics] = useState([]);
 
     useEffect(() => {
-        axios("https://api.unsplash.com/topics",{
+        // Fetch all the topics for the menu
+        axios("https://api.unsplash.com/topics", {
             method: "get",
-            headers:{
+            headers: {
                 "Authorization": `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`
             }
         }).then(response => {
-            setTopics((response.data || []).map(e => { return {title: e.title, id: e.id, description: e.description} }))
+            // Return all I need for the menu
+            setTopics((response.data || []).map(e => { return { title: e.title, id: e.id, description: e.description } }))
         });
-    },[])
+    }, [])
 
     return (
         <div className="sliding-menu">
@@ -29,19 +31,19 @@ function Menu({ toggleMenu, changeTopic }) {
             </div>
             <div className="menu-list">
                 {topics.length > 0 &&
-                <ul>
-                    {topics.map(e => {
-                        return <motion.li
-                            key={e.id}
-                            className="menu-item"
-                            onClick={() => {changeTopic(e)}}
-                            title={e.description}
-                            whileHover={{ scale: 1.1, x: 50, color: "#fa82c4" }}
-                        >
-                            {e.title}
-                        </motion.li>
-                    })}
-                </ul>
+                    <ul>
+                        {topics.map(e => {
+                            return <motion.li
+                                key={e.id}
+                                className="menu-item"
+                                onClick={() => { changeTopic(e) }}
+                                title={e.description}
+                                whileHover={{ scale: 1.1, x: 50, color: "#fa82c4" }}
+                            >
+                                {e.title}
+                            </motion.li>
+                        })}
+                    </ul>
                 }
             </div>
         </div>
