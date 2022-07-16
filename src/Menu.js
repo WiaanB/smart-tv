@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
 import axios from 'axios';
 
 function Menu({ toggleMenu, changeTopic }) {
@@ -19,13 +20,26 @@ function Menu({ toggleMenu, changeTopic }) {
     return (
         <div className="sliding-menu">
             <div className="menu-icon">
-                <i onClick={toggleMenu} className="fa fa-close"></i>
+                <motion.i
+                    onClick={toggleMenu}
+                    className="fa fa-close"
+                    whileHover={{ rotate: 180 }}
+                >
+                </motion.i>
             </div>
             <div className="menu-list">
                 {topics.length > 0 &&
                 <ul>
                     {topics.map(e => {
-                        return <li key={e.id} className="menu-item" onClick={() => {changeTopic(e)}} title={e.description}>{e.title}</li>
+                        return <motion.li
+                            key={e.id}
+                            className="menu-item"
+                            onClick={() => {changeTopic(e)}}
+                            title={e.description}
+                            whileHover={{ scale: 1.1, x: 50, color: "#fa82c4" }}
+                        >
+                            {e.title}
+                        </motion.li>
                     })}
                 </ul>
                 }

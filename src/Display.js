@@ -6,11 +6,13 @@ function Display({ topic, showNav }) {
     const [loading,setLoading] = useState(true);
     const [page,setPage] = useState(1);
     const [images,setImages] = useState([]);
+    const [columns,setColumns] = useState[0,9];
 
+    // Fetch Initial Images
     useEffect(() => {
         if (topic == "") return
         setLoading(true);
-        axios(`https://api.unsplash.com/topics/${topic.id}/photos?page=${page}`,{
+        axios(`https://api.unsplash.com/topics/${topic.id}/photos?page=${page}&per_page=20`,{
             method: "get",
             headers:{
                 "Authorization": `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`
@@ -26,8 +28,11 @@ function Display({ topic, showNav }) {
                 };
             }));
             setLoading(false);
-        });
-    },[topic,page])
+        }).catch(() => {
+            console.warn('Failed to fetch resource!');
+            setLoading(false);
+        })
+    },[topic])
 
     async function cacheImages(array) {
         return new Promise(async (resolve) => {

@@ -1,7 +1,8 @@
 /* CSS Reset and Font */
 * {
   margin: 0px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -10,11 +11,16 @@
   width: 100vw;
   height: 10vh;
   background: #CB356B;
-  background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
+  background: -o-linear-gradient(left, #BD3F32, #CB356B);
+  background: -webkit-gradient(linear, left top, right top, from(#BD3F32), to(#CB356B));
   background: linear-gradient(to right, #BD3F32, #CB356B);
+  display:-ms-grid;
   display:grid;
+  -ms-grid-columns: 10% 90%;
   grid-template-columns: 10% 90%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   justify-items: center;
 }
 
@@ -22,8 +28,13 @@
   font-size: 64px;
   margin-left: -4em;
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 /* Menu */
@@ -33,9 +44,15 @@
   height: 100vh;
   width: 20vw;
   background-color: white;
-  box-shadow: 5px 15px 20px rgba(0, 0, 0,0.5);
+  -webkit-box-shadow: 5px 15px 20px rgba(0, 0, 0,0.5);
+          box-shadow: 5px 15px 20px rgba(0, 0, 0,0.5);
+  display:-webkit-box;
+  display:-ms-flexbox;
   display:flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .menu-item {
@@ -45,7 +62,10 @@
 
 .menu-item:hover {
   cursor:pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .hideMenu {
@@ -54,10 +74,12 @@
 
 /* Toggle Button */
 .fa-bars {
-  padding-left: 100px;
   color: white;
   font-size: 32px;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .fa-close {
@@ -65,11 +87,14 @@
   padding: 20px;
   color: black;
   font-size: 32px;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .fa-bars:hover {
-  color: rgb(219, 219, 219);
+  color: rgba(0, 0, 0, 0.9);
   cursor: pointer;
 }
 
@@ -83,29 +108,49 @@
 .display-area {
   width:100vw;
   height:90vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   overflow: hidden;
 }
 
 .loading {
   font-size: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .image-container {
   height: 45vh;
   width: 20vw;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 img {
   height:100%;
   width:100%;
-  object-fit: cover;
-  user-select: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .pointer {
@@ -113,9 +158,15 @@ img {
   width:50px;
   position: absolute;
   top: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size:42px;
 }
 
@@ -136,6 +187,5 @@ img {
 }
 
 .fa-chevron-right:hover, .fa-chevron-left:hover {
-  color: rgba(0,0,0,0.8);
   cursor: pointer;
 }
