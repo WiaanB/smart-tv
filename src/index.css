@@ -108,6 +108,7 @@
 .display-area {
   width:100vw;
   height:90vh;
+  background-color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -153,11 +154,16 @@ img {
           user-select: none;
 }
 
+img:hover {
+  cursor: pointer;
+}
+
 .pointer {
   height:50px;
   width:50px;
   position: absolute;
   top: 50%;
+  background-color: rgba(0,0,0,0.2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

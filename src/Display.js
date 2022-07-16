@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import PropagateLoader  from "react-spinners/PropagateLoader";
+import { motion, whileHover } from 'framer-motion';
 
 function Display({ topic, showNav }) {
     const [loading,setLoading] = useState(true);
@@ -92,21 +93,38 @@ function Display({ topic, showNav }) {
         }
     }
 
+    function openLink(url) {
+        window.open(url, '_blank').focus();
+    }
+
     return(
         <div className={`display-area ${loading ? 'loading':''}`}>
             {!loading ? images.map((i,idx) => {
                 if (idx >= columns[0] && idx <= columns[1]) {
                     return <div key={i.id} className="image-container">
-                        <img src={i.urls.regular} alt={i.description}/>
+                        <motion.img
+                            src={i.urls.regular}
+                            alt={i.description}
+                            whileHover={{ scale:1.1, boxShadow:"15px 15px 15px black;" }}
+                            onClick={ () => { openLink(i.links.html) }}
+                        />
                     </div>
                 }
-            }):<PropagateLoader loading={loading}/>
+            }):<PropagateLoader loading={loading} color={"rgb(255,255,255)"}/>
             }
             <div className={`pointer left ${(showNav || counter == 10) ? 'hide':''}`}>
-                <i className="fa fa-chevron-left" onClick={() => { moveColumns("left") }}></i>
+                <motion.i
+                    className="fa fa-chevron-left"
+                    onClick={() => { moveColumns("left") }}
+                    whileHover={{ scale: 1.2, color: 'rgb(255,255,255)' }}
+                />
             </div>
             <div className={`pointer right ${showNav ? 'hide':''}`}>
-                <i className="fa fa-chevron-right" onClick={() => { moveColumns("right") }}></i>
+                <motion.i
+                    className="fa fa-chevron-right"
+                    onClick={() => { moveColumns("right") }}
+                    whileHover={{ scale: 1.2, color: 'rgb(255,255,255)' }}
+                />
             </div>
         </div>
     );
