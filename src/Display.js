@@ -102,7 +102,7 @@ function Display({ topic, showNav }) {
 
     function openLink(url) {
         // Open the image URL
-        window.open(url, '_blank').focus();
+        window.open(url, '_self').focus();
     }
 
     return (
